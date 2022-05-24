@@ -30,6 +30,8 @@ btAdd.addEventListener("click", () => {
   container.prepend(cloneModal)
 })
 
+let alunos = []
+
 container.addEventListener("click", ev => {
   const btClose = ev.target.closest(".bt-close")
   const btSave = ev.target.closest(".bt-save")
@@ -41,10 +43,17 @@ container.addEventListener("click", ev => {
   }
 
   if (btSave) {
-    console.log(form)
     let formData = new FormData(form)
+    let aluno = []
     formData.forEach(el => {
-      console.log(el)
+      aluno.push(el)
     })
+    let alunoData = {
+      nome: aluno[0],
+      dataNasc: aluno[1],
+      matricula: aluno[2]
+    }
+    alunos.push({...alunoData})
+    console.log(alunos)
   }
 })
