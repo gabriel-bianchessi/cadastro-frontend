@@ -1,0 +1,77 @@
+/* https://flatuicolors.com/palette/de */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  font-family: 'Roboto', sans-serif;
+  --ascent-color: #a55eea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+header {
+  padding: .25em;
+  background-color: var(--ascent-color);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  flex-direction: column;
+}
+
+.modal {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 2em;
+  position: relative;
+  box-shadow: 0px 0px 23px -15px black;
+}
+
+.modal .bt-close {
+  position: absolute;
+  height: 2em;
+  width: 2em;
+  right: -1em;
+  top: -1em;
+  border-radius: 50%;
+  border: 1px solid red;
+  color: red;
+  background-color: white;
+  cursor: pointer;
+}
+
+.modal h1 {
+  display: block;
+  margin: 0 0 .25em 0;
+  padding: 0;
+}
+
+.modal > form > div {
+  margin-bottom: 1em;
+}
+
+
+.modal form > div > label {
+  display: block;
+}
+
+.modal > form > div > input {
+  width: 100%;
+}
+
+div.action {
+  display: flex;
+  justify-content: flex-end;
+}
