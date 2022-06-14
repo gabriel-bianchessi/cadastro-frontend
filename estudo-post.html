@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Page Title</title>
+</head>
+<body>
+  <form>
+    <input name="nome" type="text">
+    <input name="dataNasc" type="date">
+    <input name="matricula" type="text">
+    <button>Enviar</button>
+  </form>
+  <script>
+    const form = document.querySelector("form")
+    const button = document.querySelector("button")
+    form.addEventListener("submit", async ev => {
+      ev.preventDefault()
+      button.setAttribute("disabled", true)
+      const req = await fetch('http://127.0.0.1:4000/aluno', {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({
+          nome: form.nome.value,
+          dataNasc: form.dataNasc.value,
+          matricula: form.matricula.value
+        })
+      })
+      if(req.status == 200) {
+        console.log("Dados salvos")
+        button.removeAttribute("disabled")
+        return
+      }
+
+      console.log("Erro ao salvar os dados no servidor")
+    })
+  </script>
+</body>
+</html>

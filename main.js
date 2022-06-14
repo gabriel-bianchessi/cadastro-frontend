@@ -33,27 +33,37 @@ btAdd.addEventListener("click", () => {
 let alunos = []
 
 container.addEventListener("click", ev => {
-  const btClose = ev.target.closest(".bt-close")
-  const btSave = ev.target.closest(".bt-save")
+  let button
+
   const modal = ev.target.closest(".modal")
   const form = modal.querySelector("form")
 
-  if (btClose) {
+  if (ev.target.closest(".bt-close")) {
     modal.remove()
   }
 
-  if (btSave) {
-    let formData = new FormData(form)
-    let aluno = []
-    formData.forEach(el => {
-      aluno.push(el)
+  if (button = ev.target.closest(".bt-save")) {
+    const form = ev.target.closest('.modal').querySelector("form")
+
+    form.addEventListener("submit", async ev => {
+      ev.preventDefault()
+      button.setAttribute("disabled", true)
+      const req = await fetch('http://127.0.0.1:4000/aluno', {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({
+          nome: form.nome.value,
+          dataNasc: form.dataNasc.value,
+          matricula: form.matricula.value
+        })
+      })
+      if(req.status == 200) {
+        console.log("Dados salvos")
+        button.removeAttribute("disabled")
+        return
+      }
+
+      console.log("Erro ao salvar os dados no servidor")
     })
-    let alunoData = {
-      nome: aluno[0],
-      dataNasc: aluno[1],
-      matricula: aluno[2]
-    }
-    alunos.push({...alunoData})
-    console.log(alunos)
   }
 })
